@@ -3,6 +3,11 @@ var builder = WebApplication.CreateBuilder(args);
 // Add services to the container.
 builder.Services.AddControllersWithViews();
 
+// Add DbContext using SQL Server Provider
+builder.Services.AddDbContext<StringzContext>(options =>
+    options.UseMySql(builder.Configuration.GetConnectionString("DefaultConnection"), 
+    ServerVersion.AutoDetect(builder.Configuration.GetConnectionString("DefaultConnection"))));
+
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
