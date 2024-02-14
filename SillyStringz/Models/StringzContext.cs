@@ -14,7 +14,7 @@ namespace Stringz.Models
 
     public StringzContext(DbContextOptions<StringzContext> options) : base (options) { }
 
-    protected override void onModelCreating(ModelBuilder modelBuilder)
+    protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
       base.OnModelCreating(modelBuilder);
 
