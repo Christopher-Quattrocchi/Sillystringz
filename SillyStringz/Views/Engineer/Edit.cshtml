@@ -1,0 +1,22 @@
+@model Stringz.Models.Engineer
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Edit Engineer</title>
+    <link href="~/css/EngineerEdit.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+    <h2>Edit Engineer</h2>
+    @using (Html.BeginForm())
+    {
+        @Html.HiddenFor(model => model.EngineerId)
+        <p>@Html.LabelFor(model => model.Name): @Html.TextBoxFor(model => model.Name, new {@required = "required"})</p>
+        <input name="submit" type="submit" value="Update" />
+    }
+    <p>
+        @Html.ActionLink("Add Machine", "AddMachine", new { id = Model.EngineerId }) | 
+        @Html.ActionLink("Go back to Engineers", "Index")
+    </p>
+</body>
+</html>

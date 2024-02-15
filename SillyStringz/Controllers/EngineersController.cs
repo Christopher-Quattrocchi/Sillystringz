@@ -1,4 +1,5 @@
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using Stringz.Models;
 using System.Collections.Generic;
@@ -15,14 +16,14 @@ namespace Stringz.Controllers
       _db = db;
     }
 
-   
+
     public IActionResult Index()
     {
-   
+
       return View(_db.Engineers.ToList());
     }
 
-   
+
     public IActionResult Detail(int? id)
     {
       // if (id == null)
@@ -55,31 +56,31 @@ namespace Stringz.Controllers
     public IActionResult Create(Engineer engineer)
     {
 
-        _db.Engineers.Add(engineer);
-        _db.SaveChanges();
-        return RedirectToAction("Index");
-      
+      _db.Engineers.Add(engineer);
+      _db.SaveChanges();
+      return RedirectToAction("Index");
+
     }
 
 
-   public IActionResult Edit(int id)
+    public IActionResult Edit(int id)
     {
-        // if (id == null)
-        // {
-        //     return NotFound();
-        // }
+      // if (id == null)
+      // {
+      //     return NotFound();
+      // }
 
-        Engineer engineer = _db.Engineers.Include(e => e.JoinEntities).FirstOrDefault(e => e.EngineerId == id);
-        // if (engineer == null)
-        // {
-        //     return NotFound();
-        // }
+      Engineer engineer = _db.Engineers.Include(e => e.JoinEntities).FirstOrDefault(e => e.EngineerId == id);
+      // if (engineer == null)
+      // {
+      //     return NotFound();
+      // }
 
 
-        return View(engineer);
+      return View(engineer);
     }
 
-    
+
     [HttpPost]
 
     public IActionResult Edit(Engineer engineer)
@@ -110,7 +111,32 @@ namespace Stringz.Controllers
 
     public IActionResult AddMachine(int id)
     {
+      Engineer engineer = _db.Engineers.Include(e => e.JoinEntities)
+        .ThenInclude(je => je.Machine)
+        .FirstOrDefault(e => e.EngineerId == id);
+      ViewData["MachineId"] = new SelectList(_db.Machines, "MachineId", "Name");
+      ViewBag.EngineerId = id;
 
+      return View();
+    }
+
+    [HttpPost]
+    public IActionResult AddMachine(int id, [FromForm] int machineId)
+    {
+      var engineer = _db.Engineers.Find(id);
+      if (engineer == null)
+      {
+        return NotFound();
+      }
+
+      var existingAssignment = _db.EngineerMachines.Any(em => em.EngineerId == id && em.MachineId == machineId);
+      if (!existingAssignment)
+      {
+        _db.EngineerMachines.Add(new EngineerMachine { EngineerId = id, MachineId = machineId });
+        _db.SaveChanges();
+      }
+
+      return RedirectToAction("Detail", new { id = id });
     }
   }
 }

@@ -1,0 +1,32 @@
+@model IEnumerable<Stringz.Models.Engineer>
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Engineers</title>
+    <link href="~/css/EngineerIndex.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+    <h2>Engineers</h2>
+    <table>
+        <thead>
+            <tr>
+                <th>Name</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var engineer in Model)
+            {
+                <tr>
+                    <td>@Html.DisplayFor(modelItem => engineer.Name)</td>
+                    <td>
+                        @Html.ActionLink("Edit", "Edit", new { id = engineer.EngineerId }) |
+                        @Html.ActionLink("Details", "Details", new { id = engineer.EngineerId })
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+    @Html.ActionLink("Add New Engineer", "Create")
+</body>
+</html>
