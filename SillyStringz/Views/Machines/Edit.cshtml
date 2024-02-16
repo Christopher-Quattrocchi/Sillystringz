@@ -1,0 +1,27 @@
+@model Stringz.Models.Machine
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Edit Machine</title>
+    <link href="~/css/MachineEdit.css" rel="stylesheet" />
+</head>
+<body>
+    <h2>Edit Machine</h2>
+    @using (Html.BeginForm("Edit", "Machines", FormMethod.Post))
+    {
+        @Html.HiddenFor(model => model.MachineId)
+        <p>@Html.LabelFor(model => model.Name): @Html.TextBoxFor(model => model.Name, new {@required = "required"})</p>
+        <input type="submit" value="Update" />
+    }
+
+ 
+    @using (Html.BeginForm("DeleteConfirmed", "Machines", FormMethod.Post, new { @class = "delete-form" }))
+    {        
+        @Html.HiddenFor(model => model.MachineId)
+        <input type="submit" value="Delete" onclick="return confirm('Are you sure you want to delete this machine?');" class="btn btn-danger" />
+    }
+    
+    @Html.ActionLink("Back to List", "Index", null, new { @class = "back-link" })
+</body>
+</html>

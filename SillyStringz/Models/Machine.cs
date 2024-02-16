@@ -1,3 +1,6 @@
+using System.Collections.Generic;
+
+
 namespace Stringz.Models
 {
   public class Machine

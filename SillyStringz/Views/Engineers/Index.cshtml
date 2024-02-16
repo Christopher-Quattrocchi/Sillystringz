@@ -4,7 +4,6 @@
 <html>
 <head>
     <title>Engineers</title>
-    <link href="~/css/EngineerIndex.css" rel="stylesheet" type="text/css" />
 </head>
 <body>
     <h2>Engineers</h2>
@@ -12,6 +11,8 @@
         <thead>
             <tr>
                 <th>Name</th>
+                <th>Associated Machines</th>
+                <th>Actions</th>
             </tr>
         </thead>
         <tbody>
@@ -19,6 +20,9 @@
             {
                 <tr>
                     <td>@Html.DisplayFor(modelItem => engineer.Name)</td>
+                    <td>
+                        @string.Join(", ", engineer.JoinEntities.Select(je => je.Machine.Name))
+                    </td>
                     <td>
                         @Html.ActionLink("Edit", "Edit", new { id = engineer.EngineerId }) |
                         @Html.ActionLink("Details", "Details", new { id = engineer.EngineerId })

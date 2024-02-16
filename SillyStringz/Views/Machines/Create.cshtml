@@ -1,0 +1,18 @@
+@model Stringz.Models.Machine
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Create Machine</title>
+    <link href="~/css/MachineCreate.css" rel="stylesheet" />
+</head>
+<body>
+    <h2>Create a New Machine</h2>
+    @using (Html.BeginForm())
+    {
+        <p>@Html.LabelFor(model => model.Name): @Html.TextBoxFor(model => model.Name, new {@required = "required"})</p>
+        <input type="submit" value="Create" />
+    }
+    @Html.ActionLink("Back to List", "Index")
+</body>
+</html>

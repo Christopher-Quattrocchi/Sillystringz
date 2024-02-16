@@ -17,14 +17,17 @@ namespace Stringz.Controllers
     }
 
 
-    public IActionResult Index()
-    {
+  public IActionResult Index()
+{
+    var engineers = _db.Engineers
+                        .Include(e => e.JoinEntities)
+                        .ThenInclude(je => je.Machine)
+                        .ToList();
+    return View(engineers);
+}
 
-      return View(_db.Engineers.ToList());
-    }
 
-
-    public IActionResult Detail(int? id)
+    public IActionResult Details(int? id)
     {
       // if (id == null)
       // {
@@ -52,7 +55,6 @@ namespace Stringz.Controllers
 
 
     [HttpPost]
-    [ValidateAntiForgeryToken]
     public IActionResult Create(Engineer engineer)
     {
 
@@ -109,16 +111,17 @@ namespace Stringz.Controllers
       return RedirectToAction("Index");
     }
 
-    public IActionResult AddMachine(int id)
+public IActionResult AddMachine(int id)
+{
+    var engineer = _db.Engineers.Find(id);
+    if (engineer == null)
     {
-      Engineer engineer = _db.Engineers.Include(e => e.JoinEntities)
-        .ThenInclude(je => je.Machine)
-        .FirstOrDefault(e => e.EngineerId == id);
-      ViewData["MachineId"] = new SelectList(_db.Machines, "MachineId", "Name");
-      ViewBag.EngineerId = id;
-
-      return View();
+        return NotFound();
     }
+
+    ViewBag.MachineId = new SelectList(_db.Machines, "MachineId", "Name");
+    return View(engineer);
+}
 
     [HttpPost]
     public IActionResult AddMachine(int id, [FromForm] int machineId)
@@ -136,7 +139,7 @@ namespace Stringz.Controllers
         _db.SaveChanges();
       }
 
-      return RedirectToAction("Detail", new { id = id });
+      return RedirectToAction("Details", new { id = id });
     }
   }
 }

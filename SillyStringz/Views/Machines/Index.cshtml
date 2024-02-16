@@ -1,0 +1,33 @@
+@model IEnumerable<Stringz.Models.Machine>
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Machines</title>
+    <link href="~/css/MachineIndex.css" rel="stylesheet" />
+</head>
+<body>
+    <h2>Machines</h2>
+    <table>
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var machine in Model)
+            {
+                <tr>
+                    <td>@Html.DisplayFor(modelItem => machine.Name)</td>
+                    <td>
+                        @Html.ActionLink("Edit", "Edit", new { id = machine.MachineId }) |
+                        @Html.ActionLink("Details", "Details", new { id = machine.MachineId })
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+    @Html.ActionLink("Add New Machine", "Create")
+</body>
+</html>

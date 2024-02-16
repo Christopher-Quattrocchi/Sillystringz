@@ -1,0 +1,22 @@
+@model Stringz.Models.Machine
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Machine Details</title>
+    <link href="~/css/MachineDetails.css" rel="stylesheet" />
+</head>
+<body>
+    <h2>Machine Details</h2>
+    <div>
+        <h4>Machine</h4>
+        <hr />
+        <dl class="dl-horizontal">
+            <dt>Name</dt>
+            <dd>@Html.DisplayFor(model => model.Name)</dd>
+        </dl>
+    </div>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.MachineId }) |
+    @Html.ActionLink("Back to List", "Index")
+</body>
+</html>

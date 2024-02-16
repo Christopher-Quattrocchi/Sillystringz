@@ -1,3 +1,6 @@
+using System.Collections.Generic;
+
+
 namespace Stringz.Models
 {
   public class Engineer
@@ -6,5 +9,10 @@ namespace Stringz.Models
     public int EngineerId { get; set; }
 
     public List<EngineerMachine> JoinEntities {get; set; }
+
+    public Engineer()
+    {
+      JoinEntities = new List<EngineerMachine>();
+    }
   }
 }
