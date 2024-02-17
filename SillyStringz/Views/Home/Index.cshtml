@@ -1,13 +1,13 @@
-﻿@{
-    ViewData["Title"] = "Home Page";
-}
+﻿@using Stringz.Models
 
+<link rel="stylesheet" href="~/css/SillyStringz.styles.css" asp-append-version="true" />
 <div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Engineers:</p>
-    @Html.ActionLink("View engineer index", "Index", "Engineers")
+    <h1 class="display-4">Welcome to SillyStringz Factory</h1>
+    <p>Create, edit, delete or assign an engineer</p>
 
-    <p>Machines:</p>
+    @Html.ActionLink("View engineer index", "Index", "Engineers")
+    <p>Create, edit, delete or assign a machine</p>
+
     @Html.ActionLink("View machine index", "Index", "Machines")
 
 

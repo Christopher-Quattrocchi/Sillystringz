@@ -1,10 +1,11 @@
 @model Stringz.Models.Machine
+@using Stringz.Models
 
 <!DOCTYPE html>
 <html>
 <head>
     <title>Edit Machine</title>
-    <link href="~/css/MachineEdit.css" rel="stylesheet" />
+   <link rel="stylesheet" href="~/css/SillyStringz.styles.css" asp-append-version="true" />
 </head>
 <body>
     <h2>Edit Machine</h2>
@@ -15,11 +16,10 @@
         <input type="submit" value="Update" />
     }
 
- 
-    @using (Html.BeginForm("DeleteConfirmed", "Machines", FormMethod.Post, new { @class = "delete-form" }))
+
+    @using (Html.BeginForm("Delete", "Machines", new { id = Model.MachineId }, FormMethod.Post, true, htmlAttributes: new { @class = "delete-form" }))
     {        
-        @Html.HiddenFor(model => model.MachineId)
-        <input type="submit" value="Delete" onclick="return confirm('Are you sure you want to delete this machine?');" class="btn btn-danger" />
+        <input type="submit" value="Delete" class="btn btn-danger" />
     }
     
     @Html.ActionLink("Back to List", "Index", null, new { @class = "back-link" })

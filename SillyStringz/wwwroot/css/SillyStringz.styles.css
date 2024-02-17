@@ -1,0 +1,114 @@
+body {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  padding-top: 20px;
+  padding-bottom: 20px;
+  background-color: #f4f4f4;
+  color: #333;
+}
+
+header {
+  margin-bottom: 30px;
+}
+
+.navbar {
+  background-color: #007bff!important;
+  box-shadow: 0 2px 4px rgba(0,0,0,.1);
+}
+
+.nav-link {
+  color: #ffffff!important;
+  transition: color 0.3s ease-in-out;
+}
+
+.nav-link:hover {
+  color: #d1e8ff!important;
+  transition: color 0.3s ease-in-out;
+}
+
+.container {
+  width: auto;
+  padding: 0 15px;
+  background-color: #ffffff;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0,0,0,.1);
+  margin-top: 20px;
+}
+
+.footer {
+  padding: 20px 0;
+  background-color: #007bff;
+  color: #fff;
+  text-align: center;
+}
+
+.footer h4 {
+  margin-bottom: 15px;
+  font-size: 1.5em;
+  color: #ffd700; 
+}
+
+.footer p {
+  margin-bottom: 10px;
+  font-size: 1em;
+}
+
+.footer-home-link {
+  display: inline-block;
+  background-color: #ffd700; 
+  color: #007bff; 
+  padding: 5px 10px;
+  border-radius: 5px;
+  transition: background-color 0.3s, color 0.3s;
+}
+
+.footer-home-link:hover {
+  background-color: #fff;
+  color: #007bff;
+  text-decoration: none; 
+}
+
+.add-new-link, .action-link {
+  display: inline-block;
+  font-weight: bold;
+  background-color: #28a745;
+  color: white;
+  padding: 10px 15px;
+  border-radius: 5px;
+  text-decoration: none;
+  transition: background-color 0.3s ease-in-out;
+}
+
+.add-new-link:hover, .action-link:hover {
+  background-color: #218838;
+  color: #ffffff;
+  text-decoration: none;
+  transition: background-color 0.3s ease-in-out;
+}
+
+.action-link {
+  background-color: #17a2b8;
+}
+
+.action-link:hover {
+  background-color: #138496;
+}
+
+.border-top {
+  border-top: 1px solid #e7e7e7!important;
+}
+
+/* animation */
+@keyframes linkFadeIn {
+  from {
+      opacity: 0;
+      transform: translateY(-10px);
+  }
+  to {
+      opacity: 1;
+      transform: translateY(0);
+  }
+}
+
+.nav-item, .footer a {
+  animation: linkFadeIn 0.5s ease-out;
+}

@@ -30,9 +30,10 @@ namespace Stringz.Models
     .OnDelete(DeleteBehavior.Cascade);//so that deleting an engineer doesn't break stuff
 
       modelBuilder.Entity<EngineerMachine>()
-        .HasOne(em => em.Machine)
-        .WithMany(m => m.Engineers)
-        .HasForeignKey(em => em.MachineId);
+    .HasOne(em => em.Machine)
+    .WithMany(m => m.Engineers)
+    .HasForeignKey(em => em.MachineId)
+    .OnDelete(DeleteBehavior.Cascade);
     }
   }
 }

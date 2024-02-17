@@ -56,16 +56,11 @@ namespace Stringz.Controllers
       return RedirectToAction("Index");
     }
 
+    [HttpPost]
     public IActionResult Delete(int id)
     {
       Machine machine = _db.Machines.Find(id);
-      return View(machine);
-    }
 
-    [HttpPost, ActionName("Delete")]
-    public IActionResult DeleteConfirmed(int id)
-    {
-      Machine machine = _db.Machines.Find(id);
       _db.Machines.Remove(machine);
       _db.SaveChanges();
       return RedirectToAction("Index");

@@ -10,6 +10,11 @@ namespace Stringz.Models
   
 
     public List<EngineerMachine> Engineers { get; set; }
+
+    public Machine()
+    {
+      Engineers = new List<EngineerMachine>();
+    }
   }
 }
 
