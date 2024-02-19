@@ -30,7 +30,7 @@ Follow these steps to get a local copy up and running:
 
 1. **Clone the Repository**
    ```bash
-   git clone https://github.com/YourUsername/SillyStringz.git
+   git clone https://github.com/christopher-quattrocchi/SillyStringz.git
 
 2. **Navigate to the Project Directory**
 cd SillyStringz.Solutions
